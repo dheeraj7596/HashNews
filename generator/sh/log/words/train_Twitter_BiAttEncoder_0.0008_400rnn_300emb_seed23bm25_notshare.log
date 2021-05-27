@@ -1,0 +1,461 @@
+[2020-09-09 17:15:09,482 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:15:09,714 INFO]  * vocabulary size. source = 61361; target = 11644
+[2020-09-09 17:15:09,715 INFO] Building model...
+[2020-09-09 17:15:18,660 INFO] TwoEncoderModel(
+  (encoder): BiAttEncoder(
+    (linear_bm25): Linear(in_features=1, out_features=1, bias=True)
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(61361, 300, padding_idx=0)
+        )
+      )
+    )
+    (src_rnn_list): ModuleList(
+      (0): GRU(300, 200, bidirectional=True)
+    )
+    (merge_rnn): GRU(800, 200, bidirectional=True)
+    (combine_output): Linear(in_features=800, out_features=400, bias=True)
+    (combine_hidden): Linear(in_features=400, out_features=200, bias=True)
+    (dropout): Dropout(p=0.1, inplace=False)
+  )
+  (decoder): InputFeedRNNDecoder(
+    (embeddings): Embeddings(
+      (make_embedding): Sequential(
+        (emb_luts): Elementwise(
+          (0): Embedding(11644, 300, padding_idx=1)
+        )
+      )
+    )
+    (dropout): Dropout(p=0.1, inplace=False)
+    (rnn): StackedGRU(
+      (dropout): Dropout(p=0.1, inplace=False)
+      (layers): ModuleList(
+        (0): GRUCell(700, 400)
+      )
+    )
+    (attn): GlobalAttention(
+      (linear_in): Linear(in_features=400, out_features=400, bias=False)
+      (linear_out): Linear(in_features=800, out_features=400, bias=False)
+      (sm): Softmax(dim=-1)
+      (tanh): Tanh()
+    )
+  )
+  (generator): Sequential(
+    (0): Linear(in_features=400, out_features=11644, bias=True)
+    (1): LogSoftmax()
+  )
+)
+[2020-09-09 17:15:18,661 INFO] * number of parameters: 30578546
+[2020-09-09 17:15:18,662 INFO] encoder: 20613702
+[2020-09-09 17:15:18,662 INFO] decoder: 9964844
+[2020-09-09 17:15:18,662 INFO] Making optimizer for training.
+Stage 1: Keys after executing optim.set_parameters(model.parameters())
+optim.optimizer.state_dict()['state'] keys: 
+optim.optimizer.state_dict()['param_groups'] elements: 
+optim.optimizer.state_dict()['param_groups'] element: {'lr': 0.0008, 'betas': [0.9, 0.999], 'eps': 1e-09, 'weight_decay': 0, 'amsgrad': False, 'params': [140531997168552, 140531997168696, 140531997168336, 140531997168624, 140531997168840, 140531997168984, 140531997168912, 140531997169128, 140531997169272, 140531997169200, 140531997169416, 140531997169776, 140531997169992, 140531997170136, 140531997170064, 140531997170280, 140531997170424, 140531997170352, 140531997170568, 140531997170928, 140531997171144, 140531997171288, 140531997171216, 140531997171432, 140531997171576, 140531997171504, 140531997265992, 140531997266136, 140531997266064, 140531997266280, 140531997266424, 140531997266352]}
+/home/xiuwen/anaconda3/envs/hashtagGen/lib/python3.6/site-packages/torch/nn/_reduction.py:43: UserWarning: size_average and reduce args will be deprecated, please use reduction='sum' instead.
+  warnings.warn(warning.format(ret))
+[2020-09-09 17:15:18,664 INFO] 
+[2020-09-09 17:15:18,664 INFO] Start training...
+[2020-09-09 17:15:18,664 INFO]  * number of epochs: 15, starting from Epoch 1
+[2020-09-09 17:15:18,664 INFO]  * batch size: 64
+[2020-09-09 17:15:18,664 INFO] The current epoch: 1
+[2020-09-09 17:15:50,541 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:16:01,564 INFO] Epoch  1,    50/ 1218; acc:  34.81; ppl: 316.92; xent:   5.76;  5012 src tok/s; 848 tgt tok/s;     11 s elapsed
+[2020-09-09 17:16:12,246 INFO] Epoch  1,   100/ 1218; acc:  36.31; ppl: 153.22; xent:   5.03;  5217 src tok/s; 872 tgt tok/s;     22 s elapsed
+[2020-09-09 17:16:22,128 INFO] Epoch  1,   150/ 1218; acc:  37.29; ppl: 117.07; xent:   4.76;  5061 src tok/s; 975 tgt tok/s;     32 s elapsed
+[2020-09-09 17:16:33,159 INFO] Epoch  1,   200/ 1218; acc:  40.63; ppl:  89.68; xent:   4.50;  5639 src tok/s; 836 tgt tok/s;     43 s elapsed
+[2020-09-09 17:16:44,426 INFO] Epoch  1,   250/ 1218; acc:  40.58; ppl:  77.62; xent:   4.35;  4858 src tok/s; 860 tgt tok/s;     54 s elapsed
+[2020-09-09 17:16:55,712 INFO] Epoch  1,   300/ 1218; acc:  43.03; ppl:  65.59; xent:   4.18;  5023 src tok/s; 807 tgt tok/s;     65 s elapsed
+[2020-09-09 17:17:06,330 INFO] Epoch  1,   350/ 1218; acc:  42.94; ppl:  64.70; xent:   4.17;  5273 src tok/s; 897 tgt tok/s;     76 s elapsed
+[2020-09-09 17:17:17,469 INFO] Epoch  1,   400/ 1218; acc:  44.45; ppl:  53.33; xent:   3.98;  5027 src tok/s; 826 tgt tok/s;     87 s elapsed
+[2020-09-09 17:17:28,831 INFO] Epoch  1,   450/ 1218; acc:  45.19; ppl:  50.10; xent:   3.91;  5003 src tok/s; 824 tgt tok/s;     98 s elapsed
+[2020-09-09 17:17:40,133 INFO] Epoch  1,   500/ 1218; acc:  45.36; ppl:  48.01; xent:   3.87;  4862 src tok/s; 838 tgt tok/s;    110 s elapsed
+[2020-09-09 17:17:52,325 INFO] Epoch  1,   550/ 1218; acc:  45.78; ppl:  44.66; xent:   3.80;  4655 src tok/s; 782 tgt tok/s;    122 s elapsed
+[2020-09-09 17:18:04,442 INFO] Epoch  1,   600/ 1218; acc:  47.37; ppl:  41.00; xent:   3.71;  4482 src tok/s; 756 tgt tok/s;    134 s elapsed
+[2020-09-09 17:18:16,264 INFO] Epoch  1,   650/ 1218; acc:  47.13; ppl:  38.93; xent:   3.66;  4619 src tok/s; 790 tgt tok/s;    146 s elapsed
+[2020-09-09 17:18:28,018 INFO] Epoch  1,   700/ 1218; acc:  47.53; ppl:  38.56; xent:   3.65;  4865 src tok/s; 793 tgt tok/s;    157 s elapsed
+[2020-09-09 17:18:39,950 INFO] Epoch  1,   750/ 1218; acc:  47.89; ppl:  36.11; xent:   3.59;  4471 src tok/s; 783 tgt tok/s;    169 s elapsed
+[2020-09-09 17:18:51,709 INFO] Epoch  1,   800/ 1218; acc:  49.24; ppl:  32.93; xent:   3.49;  4943 src tok/s; 797 tgt tok/s;    181 s elapsed
+[2020-09-09 17:19:04,147 INFO] Epoch  1,   850/ 1218; acc:  48.66; ppl:  33.90; xent:   3.52;  4485 src tok/s; 763 tgt tok/s;    194 s elapsed
+[2020-09-09 17:19:15,799 INFO] Epoch  1,   900/ 1218; acc:  48.49; ppl:  33.26; xent:   3.50;  4729 src tok/s; 781 tgt tok/s;    205 s elapsed
+[2020-09-09 17:19:28,595 INFO] Epoch  1,   950/ 1218; acc:  48.87; ppl:  33.76; xent:   3.52;  4446 src tok/s; 746 tgt tok/s;    218 s elapsed
+[2020-09-09 17:19:40,933 INFO] Epoch  1,  1000/ 1218; acc:  49.44; ppl:  30.07; xent:   3.40;  4500 src tok/s; 753 tgt tok/s;    230 s elapsed
+[2020-09-09 17:19:52,750 INFO] Epoch  1,  1050/ 1218; acc:  48.84; ppl:  32.65; xent:   3.49;  4702 src tok/s; 797 tgt tok/s;    242 s elapsed
+[2020-09-09 17:20:02,922 INFO] Epoch  1,  1100/ 1218; acc:  49.95; ppl:  28.56; xent:   3.35;  5420 src tok/s; 921 tgt tok/s;    252 s elapsed
+[2020-09-09 17:20:13,242 INFO] Epoch  1,  1150/ 1218; acc:  49.86; ppl:  29.30; xent:   3.38;  5698 src tok/s; 953 tgt tok/s;    263 s elapsed
+[2020-09-09 17:20:23,817 INFO] Epoch  1,  1200/ 1218; acc:  50.12; ppl:  27.46; xent:   3.31;  4926 src tok/s; 852 tgt tok/s;    273 s elapsed
+[2020-09-09 17:20:28,005 INFO] Train perplexity: 49.6509
+[2020-09-09 17:20:28,006 INFO] Train accuracy: 45.4648
+[2020-09-09 17:20:30,506 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+/home/xiuwen/anaconda3/envs/hashtagGen/lib/python3.6/site-packages/torchtext/data/field.py:321: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  return Variable(arr, volatile=not train), lengths
+/home/xiuwen/anaconda3/envs/hashtagGen/lib/python3.6/site-packages/torchtext/data/field.py:322: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  return Variable(arr, volatile=not train)
+[2020-09-09 17:21:04,813 INFO] Validation perplexity: 27.1337
+[2020-09-09 17:21:04,813 INFO] Validation accuracy: 50.6835
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_50.68_ppl_27.13_e1.pt
+[2020-09-09 17:21:05,990 INFO] The current epoch: 2
+[2020-09-09 17:21:44,387 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:21:57,855 INFO] Epoch  2,    50/ 1218; acc:  50.72; ppl:  23.42; xent:   3.15;  4101 src tok/s; 694 tgt tok/s;     13 s elapsed
+[2020-09-09 17:22:09,592 INFO] Epoch  2,   100/ 1218; acc:  50.64; ppl:  23.05; xent:   3.14;  4749 src tok/s; 793 tgt tok/s;     25 s elapsed
+[2020-09-09 17:22:21,552 INFO] Epoch  2,   150/ 1218; acc:  51.68; ppl:  20.63; xent:   3.03;  4182 src tok/s; 806 tgt tok/s;     37 s elapsed
+[2020-09-09 17:22:34,201 INFO] Epoch  2,   200/ 1218; acc:  51.09; ppl:  23.24; xent:   3.15;  4916 src tok/s; 728 tgt tok/s;     50 s elapsed
+[2020-09-09 17:22:46,440 INFO] Epoch  2,   250/ 1218; acc:  50.98; ppl:  21.08; xent:   3.05;  4472 src tok/s; 791 tgt tok/s;     62 s elapsed
+[2020-09-09 17:22:58,397 INFO] Epoch  2,   300/ 1218; acc:  51.35; ppl:  20.43; xent:   3.02;  4741 src tok/s; 762 tgt tok/s;     74 s elapsed
+[2020-09-09 17:23:09,772 INFO] Epoch  2,   350/ 1218; acc:  51.73; ppl:  20.74; xent:   3.03;  4923 src tok/s; 837 tgt tok/s;     85 s elapsed
+[2020-09-09 17:23:20,789 INFO] Epoch  2,   400/ 1218; acc:  52.29; ppl:  19.03; xent:   2.95;  5083 src tok/s; 835 tgt tok/s;     96 s elapsed
+[2020-09-09 17:23:31,787 INFO] Epoch  2,   450/ 1218; acc:  52.32; ppl:  19.01; xent:   2.95;  5169 src tok/s; 852 tgt tok/s;    107 s elapsed
+[2020-09-09 17:23:42,394 INFO] Epoch  2,   500/ 1218; acc:  52.39; ppl:  17.94; xent:   2.89;  5181 src tok/s; 893 tgt tok/s;    118 s elapsed
+[2020-09-09 17:23:53,373 INFO] Epoch  2,   550/ 1218; acc:  53.29; ppl:  17.52; xent:   2.86;  5170 src tok/s; 869 tgt tok/s;    129 s elapsed
+[2020-09-09 17:24:04,278 INFO] Epoch  2,   600/ 1218; acc:  53.43; ppl:  16.91; xent:   2.83;  4981 src tok/s; 840 tgt tok/s;    140 s elapsed
+[2020-09-09 17:24:15,339 INFO] Epoch  2,   650/ 1218; acc:  53.38; ppl:  16.10; xent:   2.78;  4935 src tok/s; 844 tgt tok/s;    151 s elapsed
+[2020-09-09 17:24:26,853 INFO] Epoch  2,   700/ 1218; acc:  53.46; ppl:  16.67; xent:   2.81;  4967 src tok/s; 810 tgt tok/s;    162 s elapsed
+[2020-09-09 17:24:38,286 INFO] Epoch  2,   750/ 1218; acc:  53.97; ppl:  15.81; xent:   2.76;  4665 src tok/s; 817 tgt tok/s;    174 s elapsed
+[2020-09-09 17:24:49,678 INFO] Epoch  2,   800/ 1218; acc:  54.28; ppl:  15.08; xent:   2.71;  5100 src tok/s; 823 tgt tok/s;    185 s elapsed
+[2020-09-09 17:25:00,452 INFO] Epoch  2,   850/ 1218; acc:  54.37; ppl:  15.32; xent:   2.73;  5179 src tok/s; 881 tgt tok/s;    196 s elapsed
+[2020-09-09 17:25:11,575 INFO] Epoch  2,   900/ 1218; acc:  52.90; ppl:  16.20; xent:   2.78;  4953 src tok/s; 818 tgt tok/s;    207 s elapsed
+[2020-09-09 17:25:23,007 INFO] Epoch  2,   950/ 1218; acc:  53.25; ppl:  16.04; xent:   2.77;  4977 src tok/s; 835 tgt tok/s;    219 s elapsed
+[2020-09-09 17:25:34,023 INFO] Epoch  2,  1000/ 1218; acc:  54.30; ppl:  14.38; xent:   2.67;  5037 src tok/s; 843 tgt tok/s;    230 s elapsed
+[2020-09-09 17:25:44,782 INFO] Epoch  2,  1050/ 1218; acc:  53.72; ppl:  15.51; xent:   2.74;  5163 src tok/s; 876 tgt tok/s;    240 s elapsed
+[2020-09-09 17:25:55,889 INFO] Epoch  2,  1100/ 1218; acc:  54.26; ppl:  14.18; xent:   2.65;  4962 src tok/s; 843 tgt tok/s;    251 s elapsed
+[2020-09-09 17:26:06,421 INFO] Epoch  2,  1150/ 1218; acc:  54.48; ppl:  14.36; xent:   2.66;  5581 src tok/s; 934 tgt tok/s;    262 s elapsed
+[2020-09-09 17:26:17,937 INFO] Epoch  2,  1200/ 1218; acc:  54.03; ppl:  13.93; xent:   2.63;  4523 src tok/s; 783 tgt tok/s;    274 s elapsed
+[2020-09-09 17:26:21,824 INFO] Train perplexity: 17.4777
+[2020-09-09 17:26:21,824 INFO] Train accuracy: 52.8746
+[2020-09-09 17:26:24,088 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:27:00,540 INFO] Validation perplexity: 24.4895
+[2020-09-09 17:27:00,540 INFO] Validation accuracy: 52.1253
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.13_ppl_24.49_e2.pt
+[2020-09-09 17:27:01,728 INFO] The current epoch: 3
+[2020-09-09 17:27:33,126 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:27:45,756 INFO] Epoch  3,    50/ 1218; acc:  55.51; ppl:  12.13; xent:   2.50;  4374 src tok/s; 740 tgt tok/s;     13 s elapsed
+[2020-09-09 17:27:56,238 INFO] Epoch  3,   100/ 1218; acc:  55.20; ppl:  11.97; xent:   2.48;  5317 src tok/s; 888 tgt tok/s;     23 s elapsed
+[2020-09-09 17:28:07,137 INFO] Epoch  3,   150/ 1218; acc:  56.18; ppl:  10.81; xent:   2.38;  4589 src tok/s; 884 tgt tok/s;     34 s elapsed
+[2020-09-09 17:28:18,493 INFO] Epoch  3,   200/ 1218; acc:  55.48; ppl:  12.30; xent:   2.51;  5476 src tok/s; 811 tgt tok/s;     45 s elapsed
+[2020-09-09 17:28:28,969 INFO] Epoch  3,   250/ 1218; acc:  55.55; ppl:  11.47; xent:   2.44;  5225 src tok/s; 925 tgt tok/s;     56 s elapsed
+[2020-09-09 17:28:39,707 INFO] Epoch  3,   300/ 1218; acc:  55.68; ppl:  10.89; xent:   2.39;  5279 src tok/s; 848 tgt tok/s;     67 s elapsed
+[2020-09-09 17:28:51,037 INFO] Epoch  3,   350/ 1218; acc:  55.63; ppl:  11.30; xent:   2.43;  4942 src tok/s; 840 tgt tok/s;     78 s elapsed
+[2020-09-09 17:29:01,868 INFO] Epoch  3,   400/ 1218; acc:  56.54; ppl:  10.37; xent:   2.34;  5170 src tok/s; 850 tgt tok/s;     89 s elapsed
+[2020-09-09 17:29:13,305 INFO] Epoch  3,   450/ 1218; acc:  56.45; ppl:  10.37; xent:   2.34;  4970 src tok/s; 819 tgt tok/s;    100 s elapsed
+[2020-09-09 17:29:23,661 INFO] Epoch  3,   500/ 1218; acc:  56.35; ppl:  10.05; xent:   2.31;  5307 src tok/s; 915 tgt tok/s;    111 s elapsed
+[2020-09-09 17:29:34,912 INFO] Epoch  3,   550/ 1218; acc:  57.06; ppl:   9.82; xent:   2.28;  5044 src tok/s; 848 tgt tok/s;    122 s elapsed
+[2020-09-09 17:29:45,859 INFO] Epoch  3,   600/ 1218; acc:  57.62; ppl:   9.31; xent:   2.23;  4963 src tok/s; 837 tgt tok/s;    133 s elapsed
+[2020-09-09 17:29:57,076 INFO] Epoch  3,   650/ 1218; acc:  57.12; ppl:   9.29; xent:   2.23;  4866 src tok/s; 832 tgt tok/s;    144 s elapsed
+[2020-09-09 17:30:07,917 INFO] Epoch  3,   700/ 1218; acc:  57.69; ppl:   9.35; xent:   2.24;  5275 src tok/s; 860 tgt tok/s;    155 s elapsed
+[2020-09-09 17:30:19,393 INFO] Epoch  3,   750/ 1218; acc:  57.67; ppl:   9.04; xent:   2.20;  4648 src tok/s; 814 tgt tok/s;    166 s elapsed
+[2020-09-09 17:30:30,869 INFO] Epoch  3,   800/ 1218; acc:  58.38; ppl:   8.72; xent:   2.17;  5062 src tok/s; 816 tgt tok/s;    178 s elapsed
+[2020-09-09 17:30:41,836 INFO] Epoch  3,   850/ 1218; acc:  58.26; ppl:   8.66; xent:   2.16;  5087 src tok/s; 865 tgt tok/s;    189 s elapsed
+[2020-09-09 17:30:52,166 INFO] Epoch  3,   900/ 1218; acc:  56.76; ppl:   9.67; xent:   2.27;  5334 src tok/s; 881 tgt tok/s;    199 s elapsed
+[2020-09-09 17:31:03,254 INFO] Epoch  3,   950/ 1218; acc:  57.34; ppl:   9.17; xent:   2.22;  5132 src tok/s; 861 tgt tok/s;    210 s elapsed
+[2020-09-09 17:31:13,377 INFO] Epoch  3,  1000/ 1218; acc:  58.41; ppl:   8.35; xent:   2.12;  5481 src tok/s; 917 tgt tok/s;    220 s elapsed
+[2020-09-09 17:31:24,762 INFO] Epoch  3,  1050/ 1218; acc:  57.19; ppl:   8.94; xent:   2.19;  4880 src tok/s; 828 tgt tok/s;    232 s elapsed
+[2020-09-09 17:31:35,953 INFO] Epoch  3,  1100/ 1218; acc:  58.00; ppl:   8.49; xent:   2.14;  4925 src tok/s; 837 tgt tok/s;    243 s elapsed
+[2020-09-09 17:31:46,356 INFO] Epoch  3,  1150/ 1218; acc:  58.25; ppl:   8.50; xent:   2.14;  5651 src tok/s; 946 tgt tok/s;    253 s elapsed
+[2020-09-09 17:31:57,304 INFO] Epoch  3,  1200/ 1218; acc:  57.87; ppl:   8.34; xent:   2.12;  4758 src tok/s; 823 tgt tok/s;    264 s elapsed
+[2020-09-09 17:32:01,106 INFO] Train perplexity: 9.78192
+[2020-09-09 17:32:01,106 INFO] Train accuracy: 56.9615
+[2020-09-09 17:32:10,536 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:32:45,677 INFO] Validation perplexity: 27.682
+[2020-09-09 17:32:45,678 INFO] Validation accuracy: 51.5771
+[2020-09-09 17:32:45,678 INFO] Decaying learning rate to 0.0004
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_51.58_ppl_27.68_e3.pt
+[2020-09-09 17:32:46,950 INFO] The current epoch: 4
+[2020-09-09 17:33:18,836 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:33:32,110 INFO] Epoch  4,    50/ 1218; acc:  59.37; ppl:   7.48; xent:   2.01;  4162 src tok/s; 704 tgt tok/s;     13 s elapsed
+[2020-09-09 17:33:42,789 INFO] Epoch  4,   100/ 1218; acc:  59.61; ppl:   7.26; xent:   1.98;  5218 src tok/s; 872 tgt tok/s;     24 s elapsed
+[2020-09-09 17:33:53,923 INFO] Epoch  4,   150/ 1218; acc:  60.54; ppl:   6.69; xent:   1.90;  4491 src tok/s; 865 tgt tok/s;     35 s elapsed
+[2020-09-09 17:34:04,423 INFO] Epoch  4,   200/ 1218; acc:  59.60; ppl:   7.30; xent:   1.99;  5923 src tok/s; 878 tgt tok/s;     46 s elapsed
+[2020-09-09 17:34:15,855 INFO] Epoch  4,   250/ 1218; acc:  60.39; ppl:   6.95; xent:   1.94;  4788 src tok/s; 847 tgt tok/s;     57 s elapsed
+[2020-09-09 17:34:27,372 INFO] Epoch  4,   300/ 1218; acc:  60.12; ppl:   6.49; xent:   1.87;  4922 src tok/s; 791 tgt tok/s;     69 s elapsed
+[2020-09-09 17:34:37,747 INFO] Epoch  4,   350/ 1218; acc:  60.29; ppl:   6.64; xent:   1.89;  5397 src tok/s; 918 tgt tok/s;     79 s elapsed
+[2020-09-09 17:34:48,050 INFO] Epoch  4,   400/ 1218; acc:  61.21; ppl:   6.20; xent:   1.83;  5435 src tok/s; 893 tgt tok/s;     89 s elapsed
+[2020-09-09 17:34:59,282 INFO] Epoch  4,   450/ 1218; acc:  61.87; ppl:   6.00; xent:   1.79;  5061 src tok/s; 834 tgt tok/s;    100 s elapsed
+[2020-09-09 17:35:10,433 INFO] Epoch  4,   500/ 1218; acc:  62.21; ppl:   5.74; xent:   1.75;  4928 src tok/s; 849 tgt tok/s;    112 s elapsed
+[2020-09-09 17:35:21,751 INFO] Epoch  4,   550/ 1218; acc:  62.70; ppl:   5.55; xent:   1.71;  5014 src tok/s; 843 tgt tok/s;    123 s elapsed
+[2020-09-09 17:35:32,178 INFO] Epoch  4,   600/ 1218; acc:  63.34; ppl:   5.26; xent:   1.66;  5208 src tok/s; 879 tgt tok/s;    133 s elapsed
+[2020-09-09 17:35:43,608 INFO] Epoch  4,   650/ 1218; acc:  62.57; ppl:   5.41; xent:   1.69;  4776 src tok/s; 817 tgt tok/s;    145 s elapsed
+[2020-09-09 17:35:55,190 INFO] Epoch  4,   700/ 1218; acc:  63.60; ppl:   5.24; xent:   1.66;  4937 src tok/s; 805 tgt tok/s;    156 s elapsed
+[2020-09-09 17:36:06,358 INFO] Epoch  4,   750/ 1218; acc:  64.53; ppl:   4.94; xent:   1.60;  4776 src tok/s; 836 tgt tok/s;    168 s elapsed
+[2020-09-09 17:36:17,582 INFO] Epoch  4,   800/ 1218; acc:  63.89; ppl:   5.00; xent:   1.61;  5175 src tok/s; 835 tgt tok/s;    179 s elapsed
+[2020-09-09 17:36:29,430 INFO] Epoch  4,   850/ 1218; acc:  64.81; ppl:   4.73; xent:   1.55;  4709 src tok/s; 801 tgt tok/s;    191 s elapsed
+[2020-09-09 17:36:40,141 INFO] Epoch  4,   900/ 1218; acc:  63.12; ppl:   5.39; xent:   1.68;  5143 src tok/s; 849 tgt tok/s;    201 s elapsed
+[2020-09-09 17:36:51,069 INFO] Epoch  4,   950/ 1218; acc:  64.72; ppl:   4.83; xent:   1.57;  5207 src tok/s; 874 tgt tok/s;    212 s elapsed
+[2020-09-09 17:37:01,830 INFO] Epoch  4,  1000/ 1218; acc:  65.94; ppl:   4.37; xent:   1.48;  5156 src tok/s; 863 tgt tok/s;    223 s elapsed
+[2020-09-09 17:37:12,844 INFO] Epoch  4,  1050/ 1218; acc:  64.73; ppl:   4.69; xent:   1.55;  5045 src tok/s; 856 tgt tok/s;    234 s elapsed
+[2020-09-09 17:37:23,780 INFO] Epoch  4,  1100/ 1218; acc:  65.64; ppl:   4.47; xent:   1.50;  5040 src tok/s; 856 tgt tok/s;    245 s elapsed
+[2020-09-09 17:37:34,771 INFO] Epoch  4,  1150/ 1218; acc:  65.58; ppl:   4.49; xent:   1.50;  5349 src tok/s; 895 tgt tok/s;    256 s elapsed
+[2020-09-09 17:37:45,259 INFO] Epoch  4,  1200/ 1218; acc:  65.71; ppl:   4.36; xent:   1.47;  4966 src tok/s; 859 tgt tok/s;    266 s elapsed
+[2020-09-09 17:37:49,737 INFO] Train perplexity: 5.54567
+[2020-09-09 17:37:49,738 INFO] Train accuracy: 62.7931
+[2020-09-09 17:37:52,175 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:38:27,548 INFO] Validation perplexity: 29.223
+[2020-09-09 17:38:27,549 INFO] Validation accuracy: 52.015
+[2020-09-09 17:38:27,549 INFO] Decaying learning rate to 0.0002
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.01_ppl_29.22_e4.pt
+[2020-09-09 17:38:28,637 INFO] The current epoch: 5
+[2020-09-09 17:39:08,352 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:39:21,728 INFO] Epoch  5,    50/ 1218; acc:  62.42; ppl:   5.40; xent:   1.69;  4130 src tok/s; 699 tgt tok/s;     13 s elapsed
+[2020-09-09 17:39:32,839 INFO] Epoch  5,   100/ 1218; acc:  63.12; ppl:   5.26; xent:   1.66;  5016 src tok/s; 838 tgt tok/s;     24 s elapsed
+[2020-09-09 17:39:43,682 INFO] Epoch  5,   150/ 1218; acc:  63.51; ppl:   4.96; xent:   1.60;  4612 src tok/s; 889 tgt tok/s;     35 s elapsed
+[2020-09-09 17:39:55,225 INFO] Epoch  5,   200/ 1218; acc:  63.10; ppl:   5.24; xent:   1.66;  5388 src tok/s; 798 tgt tok/s;     47 s elapsed
+[2020-09-09 17:40:06,478 INFO] Epoch  5,   250/ 1218; acc:  63.50; ppl:   5.07; xent:   1.62;  4863 src tok/s; 861 tgt tok/s;     58 s elapsed
+[2020-09-09 17:40:17,060 INFO] Epoch  5,   300/ 1218; acc:  64.08; ppl:   4.70; xent:   1.55;  5358 src tok/s; 861 tgt tok/s;     69 s elapsed
+[2020-09-09 17:40:28,135 INFO] Epoch  5,   350/ 1218; acc:  64.62; ppl:   4.74; xent:   1.56;  5064 src tok/s; 861 tgt tok/s;     80 s elapsed
+[2020-09-09 17:40:39,210 INFO] Epoch  5,   400/ 1218; acc:  65.34; ppl:   4.44; xent:   1.49;  5055 src tok/s; 831 tgt tok/s;     91 s elapsed
+[2020-09-09 17:40:50,338 INFO] Epoch  5,   450/ 1218; acc:  65.71; ppl:   4.28; xent:   1.45;  5108 src tok/s; 842 tgt tok/s;    102 s elapsed
+[2020-09-09 17:41:01,230 INFO] Epoch  5,   500/ 1218; acc:  66.19; ppl:   4.18; xent:   1.43;  5045 src tok/s; 870 tgt tok/s;    113 s elapsed
+[2020-09-09 17:41:12,703 INFO] Epoch  5,   550/ 1218; acc:  66.54; ppl:   4.01; xent:   1.39;  4946 src tok/s; 831 tgt tok/s;    124 s elapsed
+[2020-09-09 17:41:22,972 INFO] Epoch  5,   600/ 1218; acc:  67.69; ppl:   3.78; xent:   1.33;  5289 src tok/s; 892 tgt tok/s;    135 s elapsed
+[2020-09-09 17:41:33,796 INFO] Epoch  5,   650/ 1218; acc:  66.73; ppl:   3.95; xent:   1.37;  5043 src tok/s; 862 tgt tok/s;    145 s elapsed
+[2020-09-09 17:41:44,519 INFO] Epoch  5,   700/ 1218; acc:  67.76; ppl:   3.74; xent:   1.32;  5333 src tok/s; 870 tgt tok/s;    156 s elapsed
+[2020-09-09 17:41:54,378 INFO] Epoch  5,   750/ 1218; acc:  68.63; ppl:   3.59; xent:   1.28;  5410 src tok/s; 947 tgt tok/s;    166 s elapsed
+[2020-09-09 17:42:05,152 INFO] Epoch  5,   800/ 1218; acc:  68.54; ppl:   3.65; xent:   1.29;  5392 src tok/s; 870 tgt tok/s;    177 s elapsed
+[2020-09-09 17:42:15,503 INFO] Epoch  5,   850/ 1218; acc:  69.52; ppl:   3.42; xent:   1.23;  5390 src tok/s; 916 tgt tok/s;    187 s elapsed
+[2020-09-09 17:42:26,392 INFO] Epoch  5,   900/ 1218; acc:  66.96; ppl:   3.86; xent:   1.35;  5060 src tok/s; 836 tgt tok/s;    198 s elapsed
+[2020-09-09 17:42:37,313 INFO] Epoch  5,   950/ 1218; acc:  69.73; ppl:   3.45; xent:   1.24;  5210 src tok/s; 874 tgt tok/s;    209 s elapsed
+[2020-09-09 17:42:48,368 INFO] Epoch  5,  1000/ 1218; acc:  70.72; ppl:   3.18; xent:   1.16;  5019 src tok/s; 840 tgt tok/s;    220 s elapsed
+[2020-09-09 17:42:59,687 INFO] Epoch  5,  1050/ 1218; acc:  70.12; ppl:   3.34; xent:   1.21;  4908 src tok/s; 832 tgt tok/s;    231 s elapsed
+[2020-09-09 17:43:10,118 INFO] Epoch  5,  1100/ 1218; acc:  70.78; ppl:   3.28; xent:   1.19;  5285 src tok/s; 898 tgt tok/s;    242 s elapsed
+[2020-09-09 17:43:21,723 INFO] Epoch  5,  1150/ 1218; acc:  70.51; ppl:   3.22; xent:   1.17;  5066 src tok/s; 848 tgt tok/s;    253 s elapsed
+[2020-09-09 17:43:33,010 INFO] Epoch  5,  1200/ 1218; acc:  71.17; ppl:   3.13; xent:   1.14;  4615 src tok/s; 799 tgt tok/s;    265 s elapsed
+[2020-09-09 17:43:36,997 INFO] Train perplexity: 4.00566
+[2020-09-09 17:43:36,998 INFO] Train accuracy: 66.9961
+[2020-09-09 17:43:39,868 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:44:18,175 INFO] Validation perplexity: 30.0725
+[2020-09-09 17:44:18,177 INFO] Validation accuracy: 52.4778
+[2020-09-09 17:44:18,177 INFO] Decaying learning rate to 0.0001
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.48_ppl_30.07_e5.pt
+[2020-09-09 17:44:19,601 INFO] The current epoch: 6
+[2020-09-09 17:44:54,402 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:45:07,819 INFO] Epoch  6,    50/ 1218; acc:  64.06; ppl:   4.54; xent:   1.51;  4118 src tok/s; 697 tgt tok/s;     13 s elapsed
+[2020-09-09 17:45:19,090 INFO] Epoch  6,   100/ 1218; acc:  64.85; ppl:   4.45; xent:   1.49;  4945 src tok/s; 826 tgt tok/s;     25 s elapsed
+[2020-09-09 17:45:29,455 INFO] Epoch  6,   150/ 1218; acc:  65.50; ppl:   4.25; xent:   1.45;  4826 src tok/s; 930 tgt tok/s;     35 s elapsed
+[2020-09-09 17:45:39,321 INFO] Epoch  6,   200/ 1218; acc:  64.78; ppl:   4.46; xent:   1.49;  6305 src tok/s; 934 tgt tok/s;     45 s elapsed
+[2020-09-09 17:45:49,494 INFO] Epoch  6,   250/ 1218; acc:  65.20; ppl:   4.32; xent:   1.46;  5380 src tok/s; 952 tgt tok/s;     55 s elapsed
+[2020-09-09 17:46:00,335 INFO] Epoch  6,   300/ 1218; acc:  65.81; ppl:   3.96; xent:   1.38;  5229 src tok/s; 840 tgt tok/s;     66 s elapsed
+[2020-09-09 17:46:11,277 INFO] Epoch  6,   350/ 1218; acc:  66.82; ppl:   3.95; xent:   1.37;  5118 src tok/s; 870 tgt tok/s;     77 s elapsed
+[2020-09-09 17:46:22,281 INFO] Epoch  6,   400/ 1218; acc:  67.33; ppl:   3.76; xent:   1.32;  5089 src tok/s; 836 tgt tok/s;     88 s elapsed
+[2020-09-09 17:46:33,506 INFO] Epoch  6,   450/ 1218; acc:  68.02; ppl:   3.61; xent:   1.28;  5065 src tok/s; 835 tgt tok/s;     99 s elapsed
+[2020-09-09 17:46:44,267 INFO] Epoch  6,   500/ 1218; acc:  67.61; ppl:   3.56; xent:   1.27;  5106 src tok/s; 880 tgt tok/s;    110 s elapsed
+[2020-09-09 17:46:55,727 INFO] Epoch  6,   550/ 1218; acc:  69.02; ppl:   3.41; xent:   1.23;  4952 src tok/s; 832 tgt tok/s;    121 s elapsed
+[2020-09-09 17:47:06,423 INFO] Epoch  6,   600/ 1218; acc:  69.62; ppl:   3.25; xent:   1.18;  5077 src tok/s; 857 tgt tok/s;    132 s elapsed
+[2020-09-09 17:47:17,350 INFO] Epoch  6,   650/ 1218; acc:  68.55; ppl:   3.41; xent:   1.23;  4996 src tok/s; 854 tgt tok/s;    143 s elapsed
+[2020-09-09 17:47:28,018 INFO] Epoch  6,   700/ 1218; acc:  70.10; ppl:   3.21; xent:   1.17;  5361 src tok/s; 874 tgt tok/s;    154 s elapsed
+[2020-09-09 17:47:38,891 INFO] Epoch  6,   750/ 1218; acc:  70.99; ppl:   3.09; xent:   1.13;  4906 src tok/s; 859 tgt tok/s;    164 s elapsed
+[2020-09-09 17:47:49,688 INFO] Epoch  6,   800/ 1218; acc:  70.77; ppl:   3.11; xent:   1.13;  5380 src tok/s; 868 tgt tok/s;    175 s elapsed
+[2020-09-09 17:48:00,716 INFO] Epoch  6,   850/ 1218; acc:  71.86; ppl:   2.91; xent:   1.07;  5059 src tok/s; 860 tgt tok/s;    186 s elapsed
+[2020-09-09 17:48:12,211 INFO] Epoch  6,   900/ 1218; acc:  70.11; ppl:   3.23; xent:   1.17;  4793 src tok/s; 792 tgt tok/s;    198 s elapsed
+[2020-09-09 17:48:23,172 INFO] Epoch  6,   950/ 1218; acc:  72.24; ppl:   2.95; xent:   1.08;  5191 src tok/s; 871 tgt tok/s;    209 s elapsed
+[2020-09-09 17:48:34,350 INFO] Epoch  6,  1000/ 1218; acc:  73.02; ppl:   2.79; xent:   1.02;  4964 src tok/s; 831 tgt tok/s;    220 s elapsed
+[2020-09-09 17:48:45,171 INFO] Epoch  6,  1050/ 1218; acc:  72.13; ppl:   2.88; xent:   1.06;  5134 src tok/s; 871 tgt tok/s;    231 s elapsed
+[2020-09-09 17:48:56,317 INFO] Epoch  6,  1100/ 1218; acc:  72.76; ppl:   2.77; xent:   1.02;  4945 src tok/s; 840 tgt tok/s;    242 s elapsed
+[2020-09-09 17:49:07,857 INFO] Epoch  6,  1150/ 1218; acc:  73.72; ppl:   2.76; xent:   1.02;  5094 src tok/s; 852 tgt tok/s;    253 s elapsed
+[2020-09-09 17:49:17,761 INFO] Epoch  6,  1200/ 1218; acc:  73.27; ppl:   2.68; xent:   0.99;  5259 src tok/s; 910 tgt tok/s;    263 s elapsed
+[2020-09-09 17:49:21,675 INFO] Train perplexity: 3.41365
+[2020-09-09 17:49:21,676 INFO] Train accuracy: 69.1296
+[2020-09-09 17:49:31,066 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:50:06,019 INFO] Validation perplexity: 30.3891
+[2020-09-09 17:50:06,020 INFO] Validation accuracy: 52.7875
+[2020-09-09 17:50:06,020 INFO] Decaying learning rate to 5e-05
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.79_ppl_30.39_e6.pt
+[2020-09-09 17:50:07,363 INFO] The current epoch: 7
+[2020-09-09 17:50:41,271 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:50:55,237 INFO] Epoch  7,    50/ 1218; acc:  65.53; ppl:   4.09; xent:   1.41;  3955 src tok/s; 669 tgt tok/s;     14 s elapsed
+[2020-09-09 17:51:06,242 INFO] Epoch  7,   100/ 1218; acc:  65.72; ppl:   4.08; xent:   1.41;  5064 src tok/s; 846 tgt tok/s;     25 s elapsed
+[2020-09-09 17:51:17,607 INFO] Epoch  7,   150/ 1218; acc:  66.15; ppl:   3.90; xent:   1.36;  4401 src tok/s; 848 tgt tok/s;     36 s elapsed
+[2020-09-09 17:51:28,755 INFO] Epoch  7,   200/ 1218; acc:  65.14; ppl:   4.12; xent:   1.42;  5579 src tok/s; 827 tgt tok/s;     47 s elapsed
+[2020-09-09 17:51:39,907 INFO] Epoch  7,   250/ 1218; acc:  65.73; ppl:   3.99; xent:   1.38;  4908 src tok/s; 869 tgt tok/s;     59 s elapsed
+[2020-09-09 17:51:50,284 INFO] Epoch  7,   300/ 1218; acc:  66.63; ppl:   3.69; xent:   1.31;  5462 src tok/s; 878 tgt tok/s;     69 s elapsed
+[2020-09-09 17:52:01,155 INFO] Epoch  7,   350/ 1218; acc:  67.54; ppl:   3.62; xent:   1.29;  5151 src tok/s; 876 tgt tok/s;     80 s elapsed
+[2020-09-09 17:52:12,368 INFO] Epoch  7,   400/ 1218; acc:  68.17; ppl:   3.47; xent:   1.24;  4994 src tok/s; 821 tgt tok/s;     91 s elapsed
+[2020-09-09 17:52:23,403 INFO] Epoch  7,   450/ 1218; acc:  69.75; ppl:   3.28; xent:   1.19;  5151 src tok/s; 849 tgt tok/s;    102 s elapsed
+[2020-09-09 17:52:34,839 INFO] Epoch  7,   500/ 1218; acc:  69.24; ppl:   3.27; xent:   1.18;  4805 src tok/s; 828 tgt tok/s;    114 s elapsed
+[2020-09-09 17:52:45,680 INFO] Epoch  7,   550/ 1218; acc:  70.17; ppl:   3.15; xent:   1.15;  5235 src tok/s; 880 tgt tok/s;    124 s elapsed
+[2020-09-09 17:52:55,481 INFO] Epoch  7,   600/ 1218; acc:  70.94; ppl:   3.00; xent:   1.10;  5541 src tok/s; 935 tgt tok/s;    134 s elapsed
+[2020-09-09 17:53:06,090 INFO] Epoch  7,   650/ 1218; acc:  69.40; ppl:   3.15; xent:   1.15;  5145 src tok/s; 880 tgt tok/s;    145 s elapsed
+[2020-09-09 17:53:17,085 INFO] Epoch  7,   700/ 1218; acc:  71.36; ppl:   2.97; xent:   1.09;  5201 src tok/s; 848 tgt tok/s;    156 s elapsed
+[2020-09-09 17:53:28,229 INFO] Epoch  7,   750/ 1218; acc:  71.97; ppl:   2.89; xent:   1.06;  4788 src tok/s; 838 tgt tok/s;    167 s elapsed
+[2020-09-09 17:53:39,757 INFO] Epoch  7,   800/ 1218; acc:  71.56; ppl:   2.89; xent:   1.06;  5039 src tok/s; 813 tgt tok/s;    178 s elapsed
+[2020-09-09 17:53:50,690 INFO] Epoch  7,   850/ 1218; acc:  73.39; ppl:   2.69; xent:   0.99;  5103 src tok/s; 868 tgt tok/s;    189 s elapsed
+[2020-09-09 17:54:02,285 INFO] Epoch  7,   900/ 1218; acc:  71.73; ppl:   2.93; xent:   1.08;  4751 src tok/s; 785 tgt tok/s;    201 s elapsed
+[2020-09-09 17:54:13,635 INFO] Epoch  7,   950/ 1218; acc:  73.82; ppl:   2.71; xent:   1.00;  5014 src tok/s; 841 tgt tok/s;    212 s elapsed
+[2020-09-09 17:54:24,814 INFO] Epoch  7,  1000/ 1218; acc:  74.13; ppl:   2.58; xent:   0.95;  4963 src tok/s; 831 tgt tok/s;    224 s elapsed
+[2020-09-09 17:54:35,981 INFO] Epoch  7,  1050/ 1218; acc:  73.42; ppl:   2.67; xent:   0.98;  4976 src tok/s; 844 tgt tok/s;    235 s elapsed
+[2020-09-09 17:54:47,073 INFO] Epoch  7,  1100/ 1218; acc:  74.43; ppl:   2.58; xent:   0.95;  4969 src tok/s; 844 tgt tok/s;    246 s elapsed
+[2020-09-09 17:54:57,846 INFO] Epoch  7,  1150/ 1218; acc:  74.59; ppl:   2.56; xent:   0.94;  5457 src tok/s; 913 tgt tok/s;    257 s elapsed
+[2020-09-09 17:55:08,904 INFO] Epoch  7,  1200/ 1218; acc:  75.12; ppl:   2.49; xent:   0.91;  4711 src tok/s; 815 tgt tok/s;    268 s elapsed
+[2020-09-09 17:55:12,973 INFO] Train perplexity: 3.14906
+[2020-09-09 17:55:12,973 INFO] Train accuracy: 70.2647
+[2020-09-09 17:55:15,643 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 17:55:52,832 INFO] Validation perplexity: 30.7
+[2020-09-09 17:55:52,834 INFO] Validation accuracy: 52.8159
+[2020-09-09 17:55:52,834 INFO] Decaying learning rate to 2.5e-05
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.82_ppl_30.70_e7.pt
+[2020-09-09 17:55:54,088 INFO] The current epoch: 8
+[2020-09-09 17:56:34,775 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 17:56:48,801 INFO] Epoch  8,    50/ 1218; acc:  65.70; ppl:   3.88; xent:   1.35;  3939 src tok/s; 667 tgt tok/s;     14 s elapsed
+[2020-09-09 17:56:59,923 INFO] Epoch  8,   100/ 1218; acc:  65.83; ppl:   3.96; xent:   1.38;  5011 src tok/s; 837 tgt tok/s;     25 s elapsed
+[2020-09-09 17:57:11,225 INFO] Epoch  8,   150/ 1218; acc:  66.34; ppl:   3.75; xent:   1.32;  4425 src tok/s; 852 tgt tok/s;     36 s elapsed
+[2020-09-09 17:57:22,698 INFO] Epoch  8,   200/ 1218; acc:  65.55; ppl:   3.99; xent:   1.39;  5420 src tok/s; 803 tgt tok/s;     48 s elapsed
+[2020-09-09 17:57:34,102 INFO] Epoch  8,   250/ 1218; acc:  66.14; ppl:   3.86; xent:   1.35;  4800 src tok/s; 849 tgt tok/s;     59 s elapsed
+[2020-09-09 17:57:44,752 INFO] Epoch  8,   300/ 1218; acc:  67.16; ppl:   3.60; xent:   1.28;  5322 src tok/s; 855 tgt tok/s;     70 s elapsed
+[2020-09-09 17:57:55,562 INFO] Epoch  8,   350/ 1218; acc:  67.94; ppl:   3.51; xent:   1.26;  5180 src tok/s; 881 tgt tok/s;     81 s elapsed
+[2020-09-09 17:58:06,923 INFO] Epoch  8,   400/ 1218; acc:  68.09; ppl:   3.38; xent:   1.22;  4928 src tok/s; 810 tgt tok/s;     92 s elapsed
+[2020-09-09 17:58:18,773 INFO] Epoch  8,   450/ 1218; acc:  69.94; ppl:   3.15; xent:   1.15;  4797 src tok/s; 790 tgt tok/s;    104 s elapsed
+[2020-09-09 17:58:29,904 INFO] Epoch  8,   500/ 1218; acc:  69.89; ppl:   3.14; xent:   1.14;  4937 src tok/s; 851 tgt tok/s;    115 s elapsed
+[2020-09-09 17:58:41,098 INFO] Epoch  8,   550/ 1218; acc:  71.13; ppl:   3.02; xent:   1.10;  5069 src tok/s; 852 tgt tok/s;    126 s elapsed
+[2020-09-09 17:58:52,301 INFO] Epoch  8,   600/ 1218; acc:  71.79; ppl:   2.86; xent:   1.05;  4848 src tok/s; 818 tgt tok/s;    138 s elapsed
+[2020-09-09 17:59:03,988 INFO] Epoch  8,   650/ 1218; acc:  70.17; ppl:   3.00; xent:   1.10;  4671 src tok/s; 799 tgt tok/s;    149 s elapsed
+[2020-09-09 17:59:15,276 INFO] Epoch  8,   700/ 1218; acc:  71.83; ppl:   2.83; xent:   1.04;  5066 src tok/s; 826 tgt tok/s;    160 s elapsed
+[2020-09-09 17:59:26,631 INFO] Epoch  8,   750/ 1218; acc:  72.51; ppl:   2.79; xent:   1.03;  4698 src tok/s; 823 tgt tok/s;    172 s elapsed
+[2020-09-09 17:59:38,064 INFO] Epoch  8,   800/ 1218; acc:  72.28; ppl:   2.78; xent:   1.02;  5081 src tok/s; 819 tgt tok/s;    183 s elapsed
+[2020-09-09 17:59:49,885 INFO] Epoch  8,   850/ 1218; acc:  74.25; ppl:   2.59; xent:   0.95;  4720 src tok/s; 802 tgt tok/s;    195 s elapsed
+[2020-09-09 18:00:00,779 INFO] Epoch  8,   900/ 1218; acc:  72.58; ppl:   2.82; xent:   1.04;  5058 src tok/s; 835 tgt tok/s;    206 s elapsed
+[2020-09-09 18:00:11,254 INFO] Epoch  8,   950/ 1218; acc:  74.57; ppl:   2.61; xent:   0.96;  5433 src tok/s; 911 tgt tok/s;    216 s elapsed
+[2020-09-09 18:00:21,646 INFO] Epoch  8,  1000/ 1218; acc:  74.81; ppl:   2.49; xent:   0.91;  5339 src tok/s; 894 tgt tok/s;    227 s elapsed
+[2020-09-09 18:00:31,811 INFO] Epoch  8,  1050/ 1218; acc:  74.17; ppl:   2.55; xent:   0.94;  5466 src tok/s; 927 tgt tok/s;    237 s elapsed
+[2020-09-09 18:00:41,754 INFO] Epoch  8,  1100/ 1218; acc:  75.23; ppl:   2.50; xent:   0.91;  5544 src tok/s; 942 tgt tok/s;    247 s elapsed
+[2020-09-09 18:00:52,030 INFO] Epoch  8,  1150/ 1218; acc:  75.57; ppl:   2.46; xent:   0.90;  5721 src tok/s; 957 tgt tok/s;    257 s elapsed
+[2020-09-09 18:01:02,259 INFO] Epoch  8,  1200/ 1218; acc:  75.46; ppl:   2.39; xent:   0.87;  5092 src tok/s; 881 tgt tok/s;    267 s elapsed
+[2020-09-09 18:01:05,867 INFO] Train perplexity: 3.02968
+[2020-09-09 18:01:05,868 INFO] Train accuracy: 70.8323
+[2020-09-09 18:01:08,803 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 18:01:43,915 INFO] Validation perplexity: 30.8374
+[2020-09-09 18:01:43,916 INFO] Validation accuracy: 52.8017
+[2020-09-09 18:01:43,916 INFO] Decaying learning rate to 1.25e-05
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.80_ppl_30.84_e8.pt
+[2020-09-09 18:01:45,215 INFO] The current epoch: 9
+[2020-09-09 18:02:17,943 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 18:02:31,425 INFO] Epoch  9,    50/ 1218; acc:  66.08; ppl:   3.77; xent:   1.33;  4097 src tok/s; 693 tgt tok/s;     13 s elapsed
+[2020-09-09 18:02:41,703 INFO] Epoch  9,   100/ 1218; acc:  66.21; ppl:   3.83; xent:   1.34;  5423 src tok/s; 906 tgt tok/s;     24 s elapsed
+[2020-09-09 18:02:52,276 INFO] Epoch  9,   150/ 1218; acc:  66.76; ppl:   3.63; xent:   1.29;  4730 src tok/s; 911 tgt tok/s;     34 s elapsed
+[2020-09-09 18:03:02,750 INFO] Epoch  9,   200/ 1218; acc:  65.92; ppl:   3.87; xent:   1.35;  5938 src tok/s; 880 tgt tok/s;     45 s elapsed
+[2020-09-09 18:03:13,005 INFO] Epoch  9,   250/ 1218; acc:  66.69; ppl:   3.74; xent:   1.32;  5338 src tok/s; 945 tgt tok/s;     55 s elapsed
+[2020-09-09 18:03:22,887 INFO] Epoch  9,   300/ 1218; acc:  67.53; ppl:   3.50; xent:   1.25;  5736 src tok/s; 922 tgt tok/s;     65 s elapsed
+[2020-09-09 18:03:33,195 INFO] Epoch  9,   350/ 1218; acc:  68.25; ppl:   3.42; xent:   1.23;  5432 src tok/s; 924 tgt tok/s;     75 s elapsed
+[2020-09-09 18:03:43,295 INFO] Epoch  9,   400/ 1218; acc:  68.36; ppl:   3.32; xent:   1.20;  5543 src tok/s; 911 tgt tok/s;     85 s elapsed
+[2020-09-09 18:03:53,417 INFO] Epoch  9,   450/ 1218; acc:  70.10; ppl:   3.09; xent:   1.13;  5616 src tok/s; 925 tgt tok/s;     95 s elapsed
+[2020-09-09 18:04:03,601 INFO] Epoch  9,   500/ 1218; acc:  69.63; ppl:   3.06; xent:   1.12;  5396 src tok/s; 930 tgt tok/s;    106 s elapsed
+[2020-09-09 18:04:13,727 INFO] Epoch  9,   550/ 1218; acc:  71.01; ppl:   2.97; xent:   1.09;  5606 src tok/s; 942 tgt tok/s;    116 s elapsed
+[2020-09-09 18:04:23,380 INFO] Epoch  9,   600/ 1218; acc:  71.67; ppl:   2.81; xent:   1.03;  5626 src tok/s; 949 tgt tok/s;    125 s elapsed
+[2020-09-09 18:04:33,638 INFO] Epoch  9,   650/ 1218; acc:  70.56; ppl:   2.92; xent:   1.07;  5321 src tok/s; 910 tgt tok/s;    136 s elapsed
+[2020-09-09 18:04:43,441 INFO] Epoch  9,   700/ 1218; acc:  72.26; ppl:   2.76; xent:   1.01;  5834 src tok/s; 951 tgt tok/s;    145 s elapsed
+[2020-09-09 18:04:53,624 INFO] Epoch  9,   750/ 1218; acc:  72.70; ppl:   2.72; xent:   1.00;  5239 src tok/s; 917 tgt tok/s;    156 s elapsed
+[2020-09-09 18:05:03,796 INFO] Epoch  9,   800/ 1218; acc:  72.65; ppl:   2.71; xent:   1.00;  5712 src tok/s; 921 tgt tok/s;    166 s elapsed
+[2020-09-09 18:05:14,110 INFO] Epoch  9,   850/ 1218; acc:  74.72; ppl:   2.54; xent:   0.93;  5410 src tok/s; 920 tgt tok/s;    176 s elapsed
+[2020-09-09 18:05:23,448 INFO] Epoch  9,   900/ 1218; acc:  72.69; ppl:   2.76; xent:   1.01;  5900 src tok/s; 974 tgt tok/s;    186 s elapsed
+[2020-09-09 18:05:33,513 INFO] Epoch  9,   950/ 1218; acc:  74.53; ppl:   2.55; xent:   0.94;  5653 src tok/s; 948 tgt tok/s;    196 s elapsed
+[2020-09-09 18:05:43,646 INFO] Epoch  9,  1000/ 1218; acc:  75.50; ppl:   2.41; xent:   0.88;  5476 src tok/s; 917 tgt tok/s;    206 s elapsed
+[2020-09-09 18:05:53,331 INFO] Epoch  9,  1050/ 1218; acc:  74.74; ppl:   2.50; xent:   0.91;  5737 src tok/s; 973 tgt tok/s;    215 s elapsed
+[2020-09-09 18:06:03,298 INFO] Epoch  9,  1100/ 1218; acc:  75.49; ppl:   2.44; xent:   0.89;  5530 src tok/s; 939 tgt tok/s;    225 s elapsed
+[2020-09-09 18:06:13,469 INFO] Epoch  9,  1150/ 1218; acc:  76.33; ppl:   2.41; xent:   0.88;  5781 src tok/s; 967 tgt tok/s;    236 s elapsed
+[2020-09-09 18:06:23,034 INFO] Epoch  9,  1200/ 1218; acc:  76.69; ppl:   2.34; xent:   0.85;  5446 src tok/s; 943 tgt tok/s;    245 s elapsed
+[2020-09-09 18:06:26,880 INFO] Train perplexity: 2.95683
+[2020-09-09 18:06:26,881 INFO] Train accuracy: 71.1724
+[2020-09-09 18:06:29,443 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 18:07:05,098 INFO] Validation perplexity: 30.8323
+[2020-09-09 18:07:05,100 INFO] Validation accuracy: 52.7376
+[2020-09-09 18:07:05,100 INFO] Decaying learning rate to 6.25e-06
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.74_ppl_30.83_e9.pt
+[2020-09-09 18:07:06,320 INFO] The current epoch: 10
+[2020-09-09 18:07:46,647 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 18:07:59,386 INFO] Epoch 10,    50/ 1218; acc:  66.17; ppl:   3.75; xent:   1.32;  4337 src tok/s; 734 tgt tok/s;     13 s elapsed
+[2020-09-09 18:08:09,507 INFO] Epoch 10,   100/ 1218; acc:  66.42; ppl:   3.77; xent:   1.33;  5506 src tok/s; 920 tgt tok/s;     23 s elapsed
+[2020-09-09 18:08:19,679 INFO] Epoch 10,   150/ 1218; acc:  67.30; ppl:   3.57; xent:   1.27;  4917 src tok/s; 947 tgt tok/s;     33 s elapsed
+[2020-09-09 18:08:30,119 INFO] Epoch 10,   200/ 1218; acc:  66.57; ppl:   3.76; xent:   1.33;  5959 src tok/s; 883 tgt tok/s;     43 s elapsed
+[2020-09-09 18:08:40,648 INFO] Epoch 10,   250/ 1218; acc:  66.74; ppl:   3.64; xent:   1.29;  5198 src tok/s; 920 tgt tok/s;     54 s elapsed
+[2020-09-09 18:08:50,569 INFO] Epoch 10,   300/ 1218; acc:  67.85; ppl:   3.42; xent:   1.23;  5715 src tok/s; 918 tgt tok/s;     64 s elapsed
+[2020-09-09 18:09:00,114 INFO] Epoch 10,   350/ 1218; acc:  68.92; ppl:   3.37; xent:   1.21;  5866 src tok/s; 997 tgt tok/s;     73 s elapsed
+[2020-09-09 18:09:10,334 INFO] Epoch 10,   400/ 1218; acc:  68.87; ppl:   3.28; xent:   1.19;  5479 src tok/s; 900 tgt tok/s;     84 s elapsed
+[2020-09-09 18:09:20,484 INFO] Epoch 10,   450/ 1218; acc:  70.11; ppl:   3.04; xent:   1.11;  5602 src tok/s; 923 tgt tok/s;     94 s elapsed
+[2020-09-09 18:09:30,722 INFO] Epoch 10,   500/ 1218; acc:  70.35; ppl:   3.02; xent:   1.10;  5368 src tok/s; 925 tgt tok/s;    104 s elapsed
+[2020-09-09 18:09:41,307 INFO] Epoch 10,   550/ 1218; acc:  71.21; ppl:   2.92; xent:   1.07;  5362 src tok/s; 901 tgt tok/s;    115 s elapsed
+[2020-09-09 18:09:51,671 INFO] Epoch 10,   600/ 1218; acc:  71.97; ppl:   2.76; xent:   1.02;  5241 src tok/s; 884 tgt tok/s;    125 s elapsed
+[2020-09-09 18:10:01,564 INFO] Epoch 10,   650/ 1218; acc:  71.08; ppl:   2.88; xent:   1.06;  5518 src tok/s; 944 tgt tok/s;    135 s elapsed
+[2020-09-09 18:10:11,368 INFO] Epoch 10,   700/ 1218; acc:  72.80; ppl:   2.72; xent:   1.00;  5834 src tok/s; 951 tgt tok/s;    145 s elapsed
+[2020-09-09 18:10:21,424 INFO] Epoch 10,   750/ 1218; acc:  73.15; ppl:   2.67; xent:   0.98;  5304 src tok/s; 929 tgt tok/s;    155 s elapsed
+[2020-09-09 18:10:31,383 INFO] Epoch 10,   800/ 1218; acc:  73.43; ppl:   2.66; xent:   0.98;  5833 src tok/s; 941 tgt tok/s;    165 s elapsed
+[2020-09-09 18:10:41,457 INFO] Epoch 10,   850/ 1218; acc:  74.61; ppl:   2.51; xent:   0.92;  5538 src tok/s; 942 tgt tok/s;    175 s elapsed
+[2020-09-09 18:10:51,707 INFO] Epoch 10,   900/ 1218; acc:  72.84; ppl:   2.73; xent:   1.00;  5376 src tok/s; 888 tgt tok/s;    185 s elapsed
+[2020-09-09 18:11:01,774 INFO] Epoch 10,   950/ 1218; acc:  75.08; ppl:   2.51; xent:   0.92;  5653 src tok/s; 948 tgt tok/s;    195 s elapsed
+[2020-09-09 18:11:11,629 INFO] Epoch 10,  1000/ 1218; acc:  75.48; ppl:   2.40; xent:   0.88;  5631 src tok/s; 943 tgt tok/s;    205 s elapsed
+[2020-09-09 18:11:21,368 INFO] Epoch 10,  1050/ 1218; acc:  75.12; ppl:   2.46; xent:   0.90;  5704 src tok/s; 967 tgt tok/s;    215 s elapsed
+[2020-09-09 18:11:31,098 INFO] Epoch 10,  1100/ 1218; acc:  76.14; ppl:   2.40; xent:   0.87;  5664 src tok/s; 962 tgt tok/s;    224 s elapsed
+[2020-09-09 18:11:41,001 INFO] Epoch 10,  1150/ 1218; acc:  76.84; ppl:   2.37; xent:   0.86;  5937 src tok/s; 993 tgt tok/s;    234 s elapsed
+[2020-09-09 18:11:50,392 INFO] Epoch 10,  1200/ 1218; acc:  76.68; ppl:   2.32; xent:   0.84;  5546 src tok/s; 960 tgt tok/s;    244 s elapsed
+[2020-09-09 18:11:54,077 INFO] Train perplexity: 2.91157
+[2020-09-09 18:11:54,077 INFO] Train accuracy: 71.5274
+[2020-09-09 18:11:57,056 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 18:12:29,358 INFO] Validation perplexity: 30.8242
+[2020-09-09 18:12:29,359 INFO] Validation accuracy: 52.7376
+[2020-09-09 18:12:29,359 INFO] Decaying learning rate to 3.125e-06
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.74_ppl_30.82_e10.pt
+[2020-09-09 18:12:30,324 INFO] The current epoch: 11
+[2020-09-09 18:13:05,691 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 18:13:16,966 INFO] Epoch 11,    50/ 1218; acc:  66.10; ppl:   3.71; xent:   1.31;  4900 src tok/s; 829 tgt tok/s;     11 s elapsed
+[2020-09-09 18:13:26,451 INFO] Epoch 11,   100/ 1218; acc:  66.71; ppl:   3.74; xent:   1.32;  5876 src tok/s; 982 tgt tok/s;     21 s elapsed
+[2020-09-09 18:13:35,660 INFO] Epoch 11,   150/ 1218; acc:  67.18; ppl:   3.53; xent:   1.26;  5432 src tok/s; 1046 tgt tok/s;     30 s elapsed
+[2020-09-09 18:13:45,258 INFO] Epoch 11,   200/ 1218; acc:  66.62; ppl:   3.72; xent:   1.31;  6480 src tok/s; 960 tgt tok/s;     40 s elapsed
+[2020-09-09 18:13:54,973 INFO] Epoch 11,   250/ 1218; acc:  67.30; ppl:   3.61; xent:   1.28;  5634 src tok/s; 997 tgt tok/s;     49 s elapsed
+[2020-09-09 18:14:04,432 INFO] Epoch 11,   300/ 1218; acc:  67.85; ppl:   3.39; xent:   1.22;  5993 src tok/s; 963 tgt tok/s;     59 s elapsed
+[2020-09-09 18:14:13,863 INFO] Epoch 11,   350/ 1218; acc:  68.80; ppl:   3.34; xent:   1.21;  5937 src tok/s; 1009 tgt tok/s;     68 s elapsed
+[2020-09-09 18:14:23,587 INFO] Epoch 11,   400/ 1218; acc:  68.95; ppl:   3.23; xent:   1.17;  5758 src tok/s; 946 tgt tok/s;     78 s elapsed
+[2020-09-09 18:14:33,075 INFO] Epoch 11,   450/ 1218; acc:  70.57; ppl:   3.01; xent:   1.10;  5992 src tok/s; 987 tgt tok/s;     87 s elapsed
+[2020-09-09 18:14:42,177 INFO] Epoch 11,   500/ 1218; acc:  70.49; ppl:   2.99; xent:   1.10;  6038 src tok/s; 1041 tgt tok/s;     96 s elapsed
+[2020-09-09 18:14:51,896 INFO] Epoch 11,   550/ 1218; acc:  71.14; ppl:   2.89; xent:   1.06;  5840 src tok/s; 981 tgt tok/s;    106 s elapsed
+[2020-09-09 18:15:01,190 INFO] Epoch 11,   600/ 1218; acc:  72.21; ppl:   2.73; xent:   1.00;  5845 src tok/s; 986 tgt tok/s;    115 s elapsed
+[2020-09-09 18:15:10,790 INFO] Epoch 11,   650/ 1218; acc:  71.11; ppl:   2.85; xent:   1.05;  5686 src tok/s; 972 tgt tok/s;    125 s elapsed
+[2020-09-09 18:15:20,486 INFO] Epoch 11,   700/ 1218; acc:  73.06; ppl:   2.69; xent:   0.99;  5898 src tok/s; 962 tgt tok/s;    135 s elapsed
+[2020-09-09 18:15:29,822 INFO] Epoch 11,   750/ 1218; acc:  73.17; ppl:   2.65; xent:   0.98;  5713 src tok/s; 1000 tgt tok/s;    144 s elapsed
+[2020-09-09 18:15:39,372 INFO] Epoch 11,   800/ 1218; acc:  73.24; ppl:   2.65; xent:   0.97;  6083 src tok/s; 981 tgt tok/s;    154 s elapsed
+[2020-09-09 18:15:49,035 INFO] Epoch 11,   850/ 1218; acc:  74.76; ppl:   2.48; xent:   0.91;  5774 src tok/s; 982 tgt tok/s;    163 s elapsed
+[2020-09-09 18:15:58,212 INFO] Epoch 11,   900/ 1218; acc:  73.30; ppl:   2.70; xent:   0.99;  6004 src tok/s; 992 tgt tok/s;    173 s elapsed
+[2020-09-09 18:16:07,908 INFO] Epoch 11,   950/ 1218; acc:  75.19; ppl:   2.49; xent:   0.91;  5868 src tok/s; 984 tgt tok/s;    182 s elapsed
+[2020-09-09 18:16:17,290 INFO] Epoch 11,  1000/ 1218; acc:  76.02; ppl:   2.37; xent:   0.86;  5914 src tok/s; 990 tgt tok/s;    192 s elapsed
+[2020-09-09 18:16:26,642 INFO] Epoch 11,  1050/ 1218; acc:  75.31; ppl:   2.43; xent:   0.89;  5942 src tok/s; 1008 tgt tok/s;    201 s elapsed
+[2020-09-09 18:16:36,254 INFO] Epoch 11,  1100/ 1218; acc:  76.03; ppl:   2.39; xent:   0.87;  5734 src tok/s; 974 tgt tok/s;    211 s elapsed
+[2020-09-09 18:16:46,180 INFO] Epoch 11,  1150/ 1218; acc:  76.75; ppl:   2.35; xent:   0.85;  5923 src tok/s; 991 tgt tok/s;    220 s elapsed
+[2020-09-09 18:16:55,221 INFO] Epoch 11,  1200/ 1218; acc:  76.61; ppl:   2.32; xent:   0.84;  5762 src tok/s; 997 tgt tok/s;    230 s elapsed
+[2020-09-09 18:16:58,622 INFO] Train perplexity: 2.88525
+[2020-09-09 18:16:58,622 INFO] Train accuracy: 71.6426
+[2020-09-09 18:17:01,098 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 18:17:33,300 INFO] Validation perplexity: 30.8269
+[2020-09-09 18:17:33,302 INFO] Validation accuracy: 52.7305
+[2020-09-09 18:17:33,302 INFO] Decaying learning rate to 1.5625e-06
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.73_ppl_30.83_e11.pt
+[2020-09-09 18:17:34,455 INFO] The current epoch: 12
+[2020-09-09 18:18:03,632 INFO] Loading train dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.train.1.pt, number of examples: 77909
+[2020-09-09 18:18:15,204 INFO] Epoch 12,    50/ 1218; acc:  66.33; ppl:   3.67; xent:   1.30;  4775 src tok/s; 808 tgt tok/s;     12 s elapsed
+[2020-09-09 18:18:24,669 INFO] Epoch 12,   100/ 1218; acc:  66.52; ppl:   3.71; xent:   1.31;  5889 src tok/s; 984 tgt tok/s;     21 s elapsed
+[2020-09-09 18:18:34,060 INFO] Epoch 12,   150/ 1218; acc:  67.45; ppl:   3.52; xent:   1.26;  5326 src tok/s; 1026 tgt tok/s;     30 s elapsed
+[2020-09-09 18:18:43,470 INFO] Epoch 12,   200/ 1218; acc:  66.74; ppl:   3.69; xent:   1.31;  6609 src tok/s; 979 tgt tok/s;     40 s elapsed
+[2020-09-09 18:18:52,881 INFO] Epoch 12,   250/ 1218; acc:  67.28; ppl:   3.57; xent:   1.27;  5815 src tok/s; 1029 tgt tok/s;     49 s elapsed
+[2020-09-09 18:19:02,630 INFO] Epoch 12,   300/ 1218; acc:  68.28; ppl:   3.35; xent:   1.21;  5815 src tok/s; 934 tgt tok/s;     59 s elapsed
+[2020-09-09 18:19:11,977 INFO] Epoch 12,   350/ 1218; acc:  69.15; ppl:   3.31; xent:   1.20;  5990 src tok/s; 1018 tgt tok/s;     68 s elapsed
+[2020-09-09 18:19:21,434 INFO] Epoch 12,   400/ 1218; acc:  68.83; ppl:   3.22; xent:   1.17;  5922 src tok/s; 973 tgt tok/s;     78 s elapsed
+[2020-09-09 18:19:31,063 INFO] Epoch 12,   450/ 1218; acc:  70.34; ppl:   3.00; xent:   1.10;  5904 src tok/s; 973 tgt tok/s;     87 s elapsed
+[2020-09-09 18:19:40,447 INFO] Epoch 12,   500/ 1218; acc:  70.55; ppl:   2.97; xent:   1.09;  5855 src tok/s; 1009 tgt tok/s;     97 s elapsed
+[2020-09-09 18:19:49,967 INFO] Epoch 12,   550/ 1218; acc:  71.61; ppl:   2.88; xent:   1.06;  5962 src tok/s; 1002 tgt tok/s;    106 s elapsed
+[2020-09-09 18:19:58,978 INFO] Epoch 12,   600/ 1218; acc:  72.08; ppl:   2.72; xent:   1.00;  6027 src tok/s; 1017 tgt tok/s;    115 s elapsed
+[2020-09-09 18:20:08,465 INFO] Epoch 12,   650/ 1218; acc:  71.10; ppl:   2.84; xent:   1.04;  5754 src tok/s; 984 tgt tok/s;    125 s elapsed
+[2020-09-09 18:20:18,129 INFO] Epoch 12,   700/ 1218; acc:  73.14; ppl:   2.68; xent:   0.99;  5917 src tok/s; 965 tgt tok/s;    134 s elapsed
+[2020-09-09 18:20:27,466 INFO] Epoch 12,   750/ 1218; acc:  73.43; ppl:   2.64; xent:   0.97;  5713 src tok/s; 1000 tgt tok/s;    144 s elapsed
+[2020-09-09 18:20:37,070 INFO] Epoch 12,   800/ 1218; acc:  73.51; ppl:   2.63; xent:   0.97;  6050 src tok/s; 976 tgt tok/s;    153 s elapsed
+[2020-09-09 18:20:46,858 INFO] Epoch 12,   850/ 1218; acc:  75.21; ppl:   2.48; xent:   0.91;  5699 src tok/s; 969 tgt tok/s;    163 s elapsed
+[2020-09-09 18:20:56,182 INFO] Epoch 12,   900/ 1218; acc:  73.50; ppl:   2.68; xent:   0.98;  5912 src tok/s; 976 tgt tok/s;    173 s elapsed
+[2020-09-09 18:21:05,550 INFO] Epoch 12,   950/ 1218; acc:  75.66; ppl:   2.47; xent:   0.91;  6074 src tok/s; 1019 tgt tok/s;    182 s elapsed
+[2020-09-09 18:21:14,962 INFO] Epoch 12,  1000/ 1218; acc:  75.80; ppl:   2.36; xent:   0.86;  5895 src tok/s; 987 tgt tok/s;    191 s elapsed
+[2020-09-09 18:21:24,381 INFO] Epoch 12,  1050/ 1218; acc:  75.76; ppl:   2.43; xent:   0.89;  5898 src tok/s; 1000 tgt tok/s;    201 s elapsed
+[2020-09-09 18:21:33,703 INFO] Epoch 12,  1100/ 1218; acc:  76.17; ppl:   2.38; xent:   0.87;  5913 src tok/s; 1004 tgt tok/s;    210 s elapsed
+[2020-09-09 18:21:43,123 INFO] Epoch 12,  1150/ 1218; acc:  77.09; ppl:   2.35; xent:   0.85;  6241 src tok/s; 1044 tgt tok/s;    219 s elapsed
+[2020-09-09 18:21:52,506 INFO] Epoch 12,  1200/ 1218; acc:  77.12; ppl:   2.29; xent:   0.83;  5551 src tok/s; 961 tgt tok/s;    229 s elapsed
+[2020-09-09 18:21:55,839 INFO] Train perplexity: 2.86833
+[2020-09-09 18:21:55,839 INFO] Train accuracy: 71.8179
+[2020-09-09 18:21:58,126 INFO] Loading valid dataset from ../processed_data/words/Twitter_src35_conv100_tgt10_vs30000_notshare.valid.1.pt, number of examples: 9599
+[2020-09-09 18:22:29,951 INFO] Validation perplexity: 30.8295
+[2020-09-09 18:22:29,952 INFO] Validation accuracy: 52.7234
+[2020-09-09 18:22:29,952 INFO] Decaying learning rate to 7.8125e-07
+Saving model into saved_models/Twitter_BiAttEncoder_0.0008_400rnn_300emb_seed23bm25_notshare_acc_52.72_ppl_30.83_e12.pt
+[2020-09-09 18:22:31,087 INFO] Learning rate 7.8125e-07 is below 1e-6 at epoch 12. Stop training!!

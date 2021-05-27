@@ -1,0 +1,28 @@
+Total files number: 3597
+The top_k 1: 0.083681 acc, 0.030596 recall, 0.044808 f measure,  0.026245 map
+The top_k 5: 0.062274 acc, 0.113844 recall, 0.080509 f measure,  0.047571 map
+The top_k 10: 0.051571 acc, 0.188555 recall, 0.080990 f measure,  0.053290 map
+The top_k 15: 0.034381 acc, 0.188555 recall, 0.058157 f measure,  0.053290 map
+The total character size: 28
+
+ROUGE-top 1
+{'ROUGE-1-F': 0.04004,
+ 'ROUGE-1-F-cf95': (0.03541, 0.04521),
+ 'ROUGE-1-P': 0.05056,
+ 'ROUGE-1-R': 0.03537,
+ 'ROUGE-1-R-cf95': (0.03104, 0.04035),
+ 'ROUGE-2-F': 0.00193,
+ 'ROUGE-2-F-cf95': (0.00077, 0.00335),
+ 'ROUGE-2-P': 0.0019,
+ 'ROUGE-2-R': 0.00209,
+ 'ROUGE-2-R-cf95': (0.00083, 0.00361),
+ 'ROUGE-L-F': 0.04004,
+ 'ROUGE-L-F-cf95': (0.03541, 0.04521),
+ 'ROUGE-L-P': 0.05056,
+ 'ROUGE-L-R': 0.03537,
+ 'ROUGE-L-R-cf95': (0.03104, 0.04035),
+ 'ROUGE-SU4-F': 0.00192,
+ 'ROUGE-SU4-F-cf95': (0.00076, 0.00332),
+ 'ROUGE-SU4-P': 0.0019,
+ 'ROUGE-SU4-R': 0.00211,
+ 'ROUGE-SU4-R-cf95': (0.00083, 0.00361)}

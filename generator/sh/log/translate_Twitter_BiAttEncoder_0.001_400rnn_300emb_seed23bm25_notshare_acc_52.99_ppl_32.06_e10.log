@@ -1,0 +1,69 @@
+/home/xiuwen/anaconda3/envs/hashtagGen/lib/python3.6/site-packages/torchtext/data/field.py:321: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  return Variable(arr, volatile=not train), lengths
+/home/xiuwen/anaconda3/envs/hashtagGen/lib/python3.6/site-packages/torchtext/data/field.py:322: UserWarning: volatile was removed and now has no effect. Use `with torch.no_grad():` instead.
+  return Variable(arr, volatile=not train)
+/opt/conda/conda-bld/pytorch_1591914742272/work/aten/src/ATen/native/BinaryOps.cpp:81: UserWarning: Integer division of tensors using div or / is deprecated, and in a future release div will perform true division as in Python 3. Use true_divide or floor_divide (// in Python) instead.
+Finish decoding for 100 files and spend 7.40 seconds
+Finish decoding for 200 files and spend 15.02 seconds
+Finish decoding for 300 files and spend 19.26 seconds
+Finish decoding for 400 files and spend 27.12 seconds
+Finish decoding for 500 files and spend 30.84 seconds
+Finish decoding for 600 files and spend 37.82 seconds
+Finish decoding for 700 files and spend 41.31 seconds
+Finish decoding for 800 files and spend 48.52 seconds
+Finish decoding for 900 files and spend 56.05 seconds
+Finish decoding for 1000 files and spend 59.52 seconds
+Finish decoding for 1100 files and spend 66.02 seconds
+Finish decoding for 1200 files and spend 70.22 seconds
+Finish decoding for 1300 files and spend 77.20 seconds
+Finish decoding for 1400 files and spend 81.26 seconds
+Finish decoding for 1500 files and spend 88.45 seconds
+Finish decoding for 1600 files and spend 92.08 seconds
+Finish decoding for 1700 files and spend 99.06 seconds
+Finish decoding for 1800 files and spend 106.15 seconds
+Finish decoding for 1900 files and spend 109.76 seconds
+Finish decoding for 2000 files and spend 117.40 seconds
+Finish decoding for 2100 files and spend 121.46 seconds
+Finish decoding for 2200 files and spend 129.11 seconds
+Finish decoding for 2300 files and spend 132.74 seconds
+Finish decoding for 2400 files and spend 139.86 seconds
+Finish decoding for 2500 files and spend 146.90 seconds
+Finish decoding for 2600 files and spend 150.52 seconds
+Finish decoding for 2700 files and spend 157.70 seconds
+Finish decoding for 2800 files and spend 161.24 seconds
+Finish decoding for 2900 files and spend 167.07 seconds
+Finish decoding for 3000 files and spend 170.09 seconds
+Finish decoding for 3100 files and spend 178.83 seconds
+Finish decoding for 3200 files and spend 182.47 seconds
+Finish decoding for 3300 files and spend 190.75 seconds
+Finish decoding for 3400 files and spend 197.92 seconds
+Finish decoding for 3500 files and spend 201.54 seconds
+PRED AVG SCORE: -1.1733, PRED PPL: 3.2325
+Total files number: 3596
+The top_k 1: 0.214127 acc, 0.080317 recall, 0.116817 f measure,  0.112507 map
+The top_k 5: 0.114349 acc, 0.214457 recall, 0.149164 f measure,  0.131027 map
+The top_k 10: 0.076613 acc, 0.287368 recall, 0.120974 f measure,  0.133835 map
+The top_k 15: 0.057063 acc, 0.321060 recall, 0.096904 f measure,  0.134154 map
+The total character size: 1
+
+ROUGE-top 1
+{'ROUGE-1-F': 0.13855,
+ 'ROUGE-1-F-cf95': (0.12927, 0.14851),
+ 'ROUGE-1-P': 0.14798,
+ 'ROUGE-1-R': 0.13623,
+ 'ROUGE-1-R-cf95': (0.12661, 0.14625),
+ 'ROUGE-2-F': 0.06539,
+ 'ROUGE-2-F-cf95': (0.05832, 0.07296),
+ 'ROUGE-2-P': 0.06508,
+ 'ROUGE-2-R': 0.06863,
+ 'ROUGE-2-R-cf95': (0.0613, 0.07638),
+ 'ROUGE-L-F': 0.13825,
+ 'ROUGE-L-F-cf95': (0.12898, 0.14815),
+ 'ROUGE-L-P': 0.14768,
+ 'ROUGE-L-R': 0.13591,
+ 'ROUGE-L-R-cf95': (0.12632, 0.14584),
+ 'ROUGE-SU4-F': 0.06931,
+ 'ROUGE-SU4-F-cf95': (0.06215, 0.07686),
+ 'ROUGE-SU4-P': 0.07071,
+ 'ROUGE-SU4-R': 0.07287,
+ 'ROUGE-SU4-R-cf95': (0.0651, 0.08072)}
